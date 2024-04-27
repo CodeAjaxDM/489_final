@@ -1,0 +1,30 @@
+<% if (locals.msg) {%>
+
+  <% if (msg === "name_fail") { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Petition cannot be signed due to the errors below.
+      <p class="mb-0">"Please enter a first name consisting of at least 5 characters and no more than 20 characters"</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } else if (msg === "email_fail") { %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Petition cannot be signed due to the errors below.
+      <p class="mb-0">"Please enter a valid email address"</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } else if (msg === "success") { %>
+  
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Thank you for signing the petition!
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <% } else { %>
+  
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>You have already signed this petition, thank you for your continued support!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+  
+    <% }%>
+    <% }%>

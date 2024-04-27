@@ -1,0 +1,72 @@
+.details_Banner
+{
+    padding-top: 65px;
+    background-color: rgb(155, 209, 206);
+    margin-left: 100;
+    padding-left: 0;
+    margin-right: 100;
+    padding-right: 0;
+    border: 0;
+    padding-bottom: 65px;
+    border-bottom: 2px solid;
+    border-bottom-color: black;
+    border-top: 5px solid;
+    border-top-color: black;
+}
+.img
+{
+    padding-right: 30px;
+}
+.spacer
+{
+    padding-top: 20px;
+}
+.pi
+{
+    background-color: white;
+    width: 35px;
+    height: 25px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid;
+    border-color: grey;
+}
+.title
+{
+    padding-top: 15px;
+    font-size: 32pt;
+}
+.subtitle
+{
+
+    padding-top: 15px;
+    font-size: 15pt;
+    color: grey;
+}
+.contact
+{
+    color: black;
+    padding-bottom: 15px;
+}
+.paragraph
+{
+    padding-bottom: 20px;
+}
+.related_links
+{
+    padding-left: 100px;
+    padding-bottom: 25px;
+}
+.std_link
+{
+    text-decoration:none;
+}
+.std_link:hover
+{
+    text-decoration:underline;
+}
+.question
+{
+    font-weight: bold;
+    padding-bottom: 10px;
+}

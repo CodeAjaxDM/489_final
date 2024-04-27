@@ -1,0 +1,46 @@
+.box
+{
+    border: 0px solid;
+}
+.bar_box
+{
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+.ht25
+{
+    height: 25px;
+}
+.ht35
+{
+    height: 35px;
+}
+.ht50
+{
+    height: 50px;
+}
+.ht100
+{
+    height: 100px;
+}
+.ht200
+{
+    height: 200px;
+}
+.heading
+{
+    font-size: 48pt;
+}
+.box_full
+{
+    border: 1px solid;
+    border-color: grey;
+}
+.paragraph
+{
+    padding-bottom: 20px;
+}
+.sign_petition
+{
+    padding-top: 20px;
+}
