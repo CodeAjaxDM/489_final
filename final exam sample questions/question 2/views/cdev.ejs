@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Cdevs</title>
+    <style>
+      .form-group {
+        margin:10px;
+      }
+    </style>
+</head>
+<body>
+  <%- include("header") %>
+<section id="cdev-form">
+<div class="container-lg">
+  <form method="post" action="/survey/create" onsubmit="return addcdev()">
+    <div class="form-group">
+      <label for="cdevid">Developer ID</label>
+      <input required name ="cdevid" type="text" class="form-control" id="cdevid" placeholder="12345">
+    </div>
+    <div class="form-group">
+      <label for="cdevFirstName">Developer First Name</label>
+      <input required name ="cdevFirstName" type="text" class="form-control" id="cdevFirstName" placeholder="Jane">
+    </div>
+    <div class="form-group">
+      <label for="cdevLastName">Developer Last Name</label>
+      <input required name ="cdevLastName" type="text" class="form-control" id="cdevLastName" placeholder="Doe">
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <select name ="gender" class="form-control" id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+        <option value="NA">Prefer Not To Answer</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Age</label>
+      <input required name ="age" type="text" class="form-control" id="age" placeholder="22">
+    </div>
+    <div class="form-group">
+      <label for="contributer">Does This Developer Contribute to Opensource?</label>
+      <select name ="contributer" class="form-control" id="contributer">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="student">Is This Developer a Student?</label>
+      <select name ="student" class="form-control" id="student">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="employed">What is this Developer's Employment Status?</label>
+      <select name ="employed" class="form-control" id="employed">
+        <option value="part-time">part-time</option>
+        <option value="full-time">full-time</option>
+        <option value="self">self</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="type">What is this Developer's Type Classification?</label>
+      <select name="type" class="form-control" id="type">
+        <option value="full-time">full-time</option>
+        <option value="self">self</option>
+        <option value="part-time">part-time</option>
+        <option value="other">other</option>
+      </select>
+      <!-- Always include the text input, but initially hidden -->
+      <div id="div1">
+        <label for="otherType">Other:</label>
+        <input type="text" name="other" class="form-control" id="otherType" placeholder="Enter other type">
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Add Cdev" class="btn btn-primary"></button>
+    </div>
+  </form>
+  <div id="alertmsg">
+    <%- include("cdevmsg")%>
+  </div>
+
+</div>
+</section>
+
+<section id="cdev-details">
+  <div class="container-lg">
+    <div class="p-lg-2 text-center bg-light">
+      <h1>Cdevs</h1>
+    </div>  
+    <%if (!locals.cdevs || cdevs.length == 0) { %>
+      <p> No cdevs to list! </p>
+      <% }else{ %>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Developer ID</th>
+          <th scope="col">Developer First Name</th>
+          <th scope="col">Developer Last Name</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Age</th>
+          <th scope="col">Contributes to Opensource</th>
+          <th scope="col">Is a Student</th>
+          <th scope="col">Employment</th>
+          <th scope="col">Developer Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (cdev of cdevs) { %>
+          <tr>
+            <td scope="row"><a href=<%= "/survey/"+cdev.cdevid %>><%= cdev.cdevid %></a></td>
+            <td><%= cdev.cdevFirstName %></td>
+            <td><%= cdev.cdevLastName %></td>
+            <td><%= cdev.gender %></td>
+            <td><%= cdev.age %></td>
+            <td><%= cdev.contributer %></td>
+            <td><%= cdev.student %></td>
+            <td><%= cdev.employed %></td>
+            <% if (cdev.type === "other") { %>
+              <td> <%= cdev.type %> ": " <%= cdev.other %></td>
+              <%} else{ %>
+            <td><%= cdev.type %></td>
+            <% } %>
+          </tr>
+        <% } %>
+        </tr>
+      </tbody>
+    </table>
+    <% } %>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="/js/index.js"></script>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var typeSelect = document.getElementById('type');
+    var otherInput = document.getElementById('otherType');
+    var div1 = document.getElementById('div1');
+
+    // Initially hide the text input field
+    otherInput.style.display = 'none';
+
+    // Event listener for the type select
+    typeSelect.addEventListener('change', function() {
+      var name = this.value;
+      // Show the text input field if "Other" is selected, hide it otherwise
+      if (name === 'other') {
+        div1.style.display = 'block';
+        otherInput.style.display = 'block';
+      } else {
+        div1.style.display = 'none';
+        otherInput.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+
+
+</body>
+</html>
